@@ -7,16 +7,39 @@ var mysql = require('mysql');
 
 var dbConnection = mysql.createConnection({
       user: "root",
-      password: "zubur1",
+      password: "q121212",
       database: "chat1"
     });
     dbConnection.connect();
 
 
-var addMessage function (userName, content, room) {
- connection.query('INSERT INTO messages ('userName', 'content', 'room')', [userName, content, room], function(err, result){
+exports.addMessage = function (userName, content, room) {
+
+ dbConnection.query('INSERT INTO messages (userId, content, room) VALUES ((SELECT id FROM users WHERE userName = "'+userName+'"), "'+content+'", "'+room+'");',  function(err, result){
   if (err) throw err;
- }  
-}
+  console.log(result, 'in db');
+ });
+};
+
+exports.addUser = function(userName){
+  dbConnection.query('INSERT INTO users(userName) VALUES("'+ userName +'");',  function(err, result){
+    if(err) throw err;
+      console.log(result, 'in db');
+  });
+};
 
 
+
+//'INSERT INTO chat1(userName) VALUES("' + userName +'");'
+
+
+//INSERT INTO messages (userName, content, room) VALUES ('Ron', 'hello ham', 'home');
+
+//('INSERT INTO messages (userName, content, room) VALUES (?,?,?)', [userName, content, room]
+
+
+
+  //'INSERT INTO messages (userName) VALUES (?)', [userName]
+
+
+  //SELECT id FROM users WHERE userName = '+userName+'

@@ -11,7 +11,7 @@ describe("Persistent Node Chat Server", function() {
   beforeEach(function(done) {
     dbConnection = mysql.createConnection({
       user: "root",
-      password: "zubur1",
+      password: "q121212",
       database: "chat1"
     });
     dbConnection.connect();
@@ -39,7 +39,7 @@ describe("Persistent Node Chat Server", function() {
               json: {
                 username: "Valjean",
                 message: "In mercy's name, three days is all I need.",
-                roomname: "Hello"//les miserables 
+                roomname: "roomname" 
               }
       }, function () {
         // Now if we look in the database, we should find the
@@ -65,7 +65,7 @@ describe("Persistent Node Chat Server", function() {
 
   it("Should output all messages from the DB", function(done) {
     // Let's insert a message into the db
-       var queryString = "SELCET content FROM messages";
+       var queryString = "SELECT content FROM messages";
        var queryArgs = [];
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave

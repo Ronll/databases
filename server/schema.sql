@@ -6,12 +6,19 @@ CREATE TABLE messages (
   /* Describe your table here.*/
   id int NOT NULL AUTO_INCREMENT,
   content varchar(200), 
-  userName varchar(15), 
+  userId int REFERENCES users(id), 
   room varchar(15),
   PRIMARY KEY (id)
 );
 
 /* Create other tables and define schemas for them here! */
+
+CREATE TABLE users (
+  id int NOT NULL AUTO_INCREMENT,
+  userName varchar(15), 
+  PRIMARY KEY (id)
+);
+
 
 
 
